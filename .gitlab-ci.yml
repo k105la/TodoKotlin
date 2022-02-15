@@ -1,0 +1,40 @@
+image: inovex/gitlab-ci-android
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+cache:
+  paths:
+    - .m2/
+    - .gradle/
+
+variables:
+  ANDROID_COMPILE_SDK: "31"
+  ANDROID_BUILD_TOOLS: "31.0.3"
+  ANDROID_SDK_TOOLS: "7562133"
+  ANDROID_GRADLE_VERSION: "gradle-7.2"
+
+before_script:
+  - export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+  - export GRADLE_USER_HOME=$(pwd)/.gradle
+  - chmod +x ./gradlew
+    # use yes to accept all licenses
+  - yes | sdkmanager --sdk_root=${ANDROID_HOME} --licenses || true
+
+stages:
+  - build
+  - test
+
+unitTests:
+  stage: test
+  script:
+    - ./gradlew test
+
+build:
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+      - app/build/outputs/

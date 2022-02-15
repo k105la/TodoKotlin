@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_feature_add" >Feature Add</string>
+    <string name="add_title_hint">Choose a title</string>
+    <string name="add_content_hint">Enter some content…</string>
+    <string name="save">Save</string>
+</resources>

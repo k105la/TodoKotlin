@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todoGraph">
+
+    <include-dynamic
+        android:id="@+id/todoGraph"
+        app:graphResName="todo_graph"
+        app:moduleName="feature_todo">
+
+        <action
+            android:id="@+id/action_todo_to_edit"
+            app:destination="@id/editGraph"
+            app:enterAnim="@anim/slide_down" />
+        <action
+            android:id="@+id/action_todoGraph_to_detailsGraph"
+            app:destination="@id/detailsGraph" />
+        <action
+            android:id="@+id/action_todoGraph_to_addGraph"
+            app:destination="@id/addGraph" />
+    </include-dynamic>
+
+    <include-dynamic
+        android:id="@+id/editGraph"
+        app:graphResName="edit_graph"
+        app:moduleName="feature_edit" >
+        <action
+            android:id="@+id/action_editGraph_to_todoGraph"
+            app:destination="@id/todoGraph" />
+    </include-dynamic>
+
+    <include-dynamic
+        android:id="@+id/detailsGraph"
+        app:graphResName="details_graph"
+        app:moduleName="feature_details" >
+
+        <action
+            android:id="@+id/action_detailsGraph_to_todoGraph"
+            app:destination="@id/todoGraph" />
+    </include-dynamic>
+
+    <include-dynamic
+        android:id="@+id/addGraph"
+        app:graphResName="add_graph"
+        app:moduleName="feature_add" >
+
+        <action
+            android:id="@+id/action_addGraph_to_todoGraph"
+            app:destination="@id/todoGraph" />
+    </include-dynamic>
+
+</navigation>
